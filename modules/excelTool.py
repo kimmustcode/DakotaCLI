@@ -4,7 +4,6 @@ import os
 import matplotlib.dates as mdates
 
 # currently just reads in excel data, looking to make it graph 
-
 def mod_start():
     fName = input("Enter name of excel file\n\n>")
     graph(fName)
@@ -12,7 +11,6 @@ def mod_start():
 
 # currently can plot two axis graphs 
 def graph(file_name):
-    
     dp = []
 
     dataframe1 = pd.read_excel('../rsc/' + file_name + ".xlsx")
