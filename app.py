@@ -3,6 +3,7 @@ from modules import fileManage as fm
 from modules import TFTools as tftt
 from modules import e621game as e6g
 from modules import spotifyDL as sdl
+from modules import stats as st
 import os
 import glob
 import shutil
@@ -35,13 +36,15 @@ class Dakota:
                                     """)
 
             print("I'm your Little Cat Helper ^.^\nThese are my functionalities.")
-            print("\n--(e621) downloader\n--(spotify) downloader\n--(tft) tools\n--e621 (game)\n--(open) bay\n--(clean) bay\n--(exit)")
+            print("\n--(daily) records\n--(e621) downloader\n--(spotify) downloader\n--(tft) tools\n--e621 (game)\n--(open) bay\n--(clean) bay\n--(exit)")
             x = input("\n>")
             
 
         # E621 API Interface 
             if x == 'e621':
-                e6.mod_start(self.path)    
+                e6.mod_start(self.path)  
+            elif x == 'daily':
+                st.mod_start()  
         # Spotify Downloader
             elif x == 'spotify':
                 sdl.mod_start()

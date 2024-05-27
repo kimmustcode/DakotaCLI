@@ -3,46 +3,42 @@ import matplotlib.pyplot as plt
 import os 
 import matplotlib.dates as mdates
 
-# currently just reads in excel data, looking to make it graph 
-def mod_start():
-    fName = input("Enter name of excel file\n\n>")
-    graph(fName)
-    return 
-
 # currently can plot two axis graphs 
-def graph(file_name):
-    dp = []
-
-    dataframe1 = pd.read_excel('../rsc/' + file_name + ".xlsx")
-
-    h = dataframe1.to_dict()
-    keys = [] 
-
-    # scan for keys 
-    for key in h:
-        keys.append(key)
-
-    for key in keys: 
-        print(key, end ="    ")
-    print()
-
+def show_graphs():
     
-    for key in keys:
-        temp = [] 
-        for i in range(len(h[keys[0]])):
-            if key == 'date':
-                temp.append(h[key][i].date())
-            else:
-                temp.append(h[key][i])
-        dp.append(temp)
+    dls = [
+        'steps',
+        'pushups',
+        'wallsit',
+        'water',
+        'wr'
+    ]
+    fig, axs = plt.subplots(len(dls), layout="constrained")
+    fig.suptitle('Dailies')
+    cnt = 0
+    for cat in dls:
+        dataframe1 = pd.read_excel('./rsc/Dailies/' + cat + ".xlsx")
+        dp = []
 
-    print(dp)
 
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%Y'))
-    plt.gca().xaxis.set_major_locator(mdates.DayLocator())
-    plt.plot(dp[0], dp[1])
-    plt.gcf().autofmt_xdate()
+        h = dataframe1.to_dict()
+        keys = [] 
+
+        # scan for keys 
+        for key in h:
+            keys.append(key)
+    
+        for key in keys:
+            temp = [] 
+            for i in range(len(h[keys[0]])):
+                    temp.append(h[key][i])
+            dp.append(temp)
+
+        axs[cnt].set_title(cat)
+    
+        axs[cnt].fill_between(dp[0], dp[1], alpha=0.3)
+        axs[cnt].plot(dp[0], dp[1])
+        
+        cnt += 1 
     plt.show()
     return 
-
-mod_start()                                 
