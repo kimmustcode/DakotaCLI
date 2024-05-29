@@ -37,7 +37,7 @@ def show_graphs():
         axs[cnt].set_title(cat)
     
         axs[cnt].fill_between(dp[0], dp[1], alpha=0.3)
-        axs[cnt].plot(dp[0], dp[1])
+        axs[cnt].plot(dp[0], dp[1], "--")
         
         cnt += 1 
     plt.show()

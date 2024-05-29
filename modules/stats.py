@@ -23,6 +23,7 @@ def dailies():
     dls = [
         'steps',
         'pushups',
+        'situps',
         'wallsit',
         'water',
         'wr'
