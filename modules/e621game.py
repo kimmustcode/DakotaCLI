@@ -9,8 +9,6 @@ import time
 
 api = E621()
 
-
-
 # Takes url and returns ImageTK object
 class dURLImage:
     def __init__(self, url):
@@ -48,6 +46,7 @@ class e621App:
         self.root.wm_title("e621 game")
         self.root.geometry("1920x1080")
         self.root.configure(bg='black')
+        self.root.attributes('-fullscreen',True)
 
         # Get images of first 2 posts
         self.first = dURLImage(self.randoImage()).get()
@@ -70,6 +69,7 @@ class e621App:
 
         self.root.mainloop()
         self.total()
+        self.root.destroy()
 
 
     # Totals, Sorts, and Displays Tags
